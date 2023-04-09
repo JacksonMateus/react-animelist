@@ -13,6 +13,7 @@ const SearchInput = ({value, onChange}) => {
     return (
         <input 
             className="input-search"
+            placeholder="Digite aqui o nome do anime"
             type="search" 
             value={displayValue} 
             onChange = {handleChange} 
