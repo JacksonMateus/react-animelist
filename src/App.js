@@ -49,6 +49,9 @@ function App() {
       {text && !info.data && (
         <span>Carregando...</span>
       )}
+      {info.data && info.data.length === 0 && (
+        <div>Nenhum anime encontrado para a busca atual.</div>
+        )}
       {info.data && (
         <ul className='animes-list'>
           {info.data.map((anime) => (
@@ -59,7 +62,7 @@ function App() {
           ))}
         </ul>
       )}
-      {info.meta && (
+      {(info.meta && info.data.length !== 0) && (
         <Pagination 
         limit = {LIMIT} 
         total={info.meta.count} 
