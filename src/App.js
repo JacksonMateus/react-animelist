@@ -9,12 +9,12 @@ const LIMIT = 12
 
 function App() {
   const [text, setText] = useState('')
+  const [prevText, setPrevText] = useState('');
   const [info, setInfo] = useState({})
   const [offset, setOffset] = useState(0)
 
   useEffect(() => {
-    //setInfo({})
-  
+
     const query = {
       page: {
         limit: LIMIT,
@@ -34,8 +34,14 @@ function App() {
     .then((response) => {
       setInfo(response)
     })
+
+  // Verifica se o texto de busca foi alterado e define o offset como 0 apenas se for uma nova pesquisa
+  if (text !== prevText) {
+    setPrevText(text);
+    setOffset(0);
+  }
     
-  }, [text, offset])
+  }, [text, offset, prevText])
 
   return (
     <div className="App">
